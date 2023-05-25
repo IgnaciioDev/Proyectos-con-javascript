@@ -44,11 +44,12 @@ function leerDatosCurso(curso) {
         const cursos = articulosCarrito.map( curso => { // El .map va a ir iterando sobre todo los elementos del carrito
             if( curso.id === infoCurso.id ) {
                 curso.cantidad++;
-                return curso;
+                return curso; // retorna el objeto atualizado
             } else {
-                return curso;
+                return curso; // retorna los objetos que no son los duplicados
             }
         })
+        articulosCarrito = [...cursos];
     } else {
         // Agregamos el curso al carrito
         articulosCarrito = [...articulosCarrito, infoCurso]; // Esto es para crear una copia
