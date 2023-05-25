@@ -12,6 +12,8 @@ function cargarEventListeners() {
     // Cuando agregas un curso presionando "Agregar al carrito"
     listaCursos.addEventListener('click', agregarCurso);
 
+    // Elimina cursos del carrito
+    carrito.addEventListener('click', eliminarCurso);
 }
 
 // funciones
@@ -22,6 +24,19 @@ function agregarCurso(e) {
     if(e.target.classList.contains('agregar-carrito')) {
         const cursoSeleccionado =  e.target.parentElement.parentElement; // parenElement es para seleccionar el padres de css al poner dos veces selecciona el card 
         leerDatosCurso(cursoSeleccionado);
+    }
+}
+
+// Elimina un curso del carrito
+function eliminarCurso(e) { // recuerda que estamos usando delegacion
+    if(e.target.classList.contains('borrar-curso')) {
+        // console.log(e.target.getAttribute('data-id')); Recuerda que esto es para ver que id estamos utilizando
+        const cursoId = e.target.getAttribute('data-id');
+
+        // Elimina del arrgelo de articulosCarrito por el data-id
+        articulosCarrito = articulosCarrito.filter( curso => curso.id !== cursoId);
+        
+        carritoHtml(); // Iterar sobre el carrito y mostrar su HTML
     }
 }
 
@@ -70,7 +85,7 @@ function carritoHtml() {
     // Recorre el carrito y genera el html
     articulosCarrito.forEach( curso => {
         const { imagen, titulo, precio, cantidad, id } = curso; // Aqui estamos haciendo destructuring
-        console.log(curso);
+        // console.log(curso);
         const row = document.createElement('tr');
         // ` Esto es un template en string o template literal`
         //Recuerda que antes era curso.titulo etc. Para mejorar el codigo estamos haciendo destructuring de objetos
