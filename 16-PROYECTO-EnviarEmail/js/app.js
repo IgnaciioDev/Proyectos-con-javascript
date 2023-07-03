@@ -14,9 +14,14 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
 
     function validar(e) {
         if(e.target.value.trim() === '') { // trim es para eliminar los espacios en blanco
-            console.log('Esta vacio');
+            mostrarAlerta();
         }else {
             console.log('Si hay algo');
         }
+    }
+
+
+    function mostrarAlerta() {
+        console.log('Hubo un error...')
     }
 });
