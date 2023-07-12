@@ -13,20 +13,21 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
     inputMensaje.addEventListener('blur', validar);
 
 
-    function validar(e) {
+    function validar(e) { // e es para encontrar informacion del evento
         if(e.target.value.trim() === '') { // trim es para eliminar los espacios en blanco
-            mostrarAlerta();
+            mostrarAlerta(`El campo ${e.target.id} es obligatorio`);
         }else {
             console.log('Si hay algo');
         }
     }
 
 
-    function mostrarAlerta() {
+    function mostrarAlerta(mensaje) {
         // Generar aletar en HTML
         const error = document.createElement('P');
-        error.textContent = 'Hubo un error...'
-
-        console.log('Hubo un error...')
+        error.textContent = mensaje;
+        error.classList.add('bg-red-600', 'text-white', 'p-2','text-center'); // agregano clases 
+        // Inyectar el error al formulario
+        formulario.appendChild(error);
     }
 });
