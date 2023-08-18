@@ -15,12 +15,25 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#formulario');
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
+    const btnReset = document.querySelector('#formulario button[type="reset"]');
     // Asignar eventos
     inputEmail.addEventListener('input', validar); // cuando el evento ocurra (blur) se ejectua la funcion o mejor dicho callback
     
     inputAsunto.addEventListener('input', validar);
     
     inputMensaje.addEventListener('input', validar);
+
+    btnReset.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // reiniciar el objeto
+        email.email = '';
+        email.asunto = '';
+        email.mensaje = '';
+        formulario.reset();
+
+        comprobarEmail();
+    });
 
 
     function validar(e) { // e es para encontrar informacion del evento
