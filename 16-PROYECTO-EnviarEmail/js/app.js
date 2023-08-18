@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
     const formulario = document.querySelector('#formulario');
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
     const btnReset = document.querySelector('#formulario button[type="reset"]');
+    const spinner = document.querySelector('#spinner');
+
     // Asignar eventos
     inputEmail.addEventListener('input', validar); // cuando el evento ocurra (blur) se ejectua la funcion o mejor dicho callback
     
@@ -23,17 +25,28 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
     
     inputMensaje.addEventListener('input', validar);
 
+    formulario.addEventListener('submit', enviarEmail);
+
     btnReset.addEventListener('click', function(e) {
         e.preventDefault();
 
-        // reiniciar el objeto
-        email.email = '';
-        email.asunto = '';
-        email.mensaje = '';
-        formulario.reset();
-
-        comprobarEmail();
+        resetFormulario();
     });
+
+    function enviarEmail(e) {
+        e.preventDefault();
+        spinner.classList.add('flex');
+        spinner.classList.remove('hidden');
+    console.log('enviando..')
+        setTimeout(() => {
+            spinner.classList.remove('flex');
+            spinner.classList.add('hidden');
+        
+            resetFormulario();
+        
+        
+        }, 3000);
+    }
 
 
     function validar(e) { // e es para encontrar informacion del evento
@@ -91,11 +104,21 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
 
         if(Object.values(email).includes('')){
             btnSubmit.classList.add('opacity-50');
-            btnSubmit.disable = true;
+            btnSubmit.disabled = true;
             return
         }
             btnSubmit.classList.remove('opacity-50');
-            btnSubmit.disable = false;
+            btnSubmit.disabled = false;
+    }
+
+    function resetFormulario() {
+         // reiniciar el objeto
+         email.email = '';
+         email.asunto = '';
+         email.mensaje = '';
+         formulario.reset();
+ 
+         comprobarEmail();
     }
 });
 
