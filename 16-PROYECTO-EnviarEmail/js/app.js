@@ -37,14 +37,25 @@ document.addEventListener('DOMContentLoaded', function(){ // Esto se va ejecutar
         e.preventDefault();
         spinner.classList.add('flex');
         spinner.classList.remove('hidden');
-    console.log('enviando..')
+
         setTimeout(() => {
             spinner.classList.remove('flex');
             spinner.classList.add('hidden');
         
             resetFormulario();
         
-        
+            // Crear una alerta
+            const alertaExito = document.createElement('P');
+            alertaExito.classList.add('bg-green-500', 'text-white', 'p-2', 'text-center', 'rounded-leg', 'mt-10',
+            'font-bold', 'text-sm', 'uppercase');
+
+            alertaExito.textContent = 'Mensaje enviado correctamente';
+
+            formulario.appendChild(alertaExito);
+
+            setTimeout(() => {
+                alertaExito.remove();
+            }, 3000);
         }, 3000);
     }
 
