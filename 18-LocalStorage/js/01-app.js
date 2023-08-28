@@ -20,17 +20,19 @@ const producto = {
 
 const productoString = JSON.stringify(producto);
 
-console.log(typeof productoString);
+// console.log(typeof productoString);
 
 
-localStorage.setItem('Nombre', productoString);
+localStorage.setItem('producto', productoString);
 
+console.log(productoString);
 // Una manera de almacenar un arreglo
+
 
 const meses = ['Enero', 'Febrero', 'Marzo'];
 
 const mesesString = JSON.stringify(meses);
 
-console.log(typeof mesesString);
+// console.log(typeof mesesString);
 
 localStorage.setItem('meses', mesesString);
