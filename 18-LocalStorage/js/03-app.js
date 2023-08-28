@@ -1,11 +1,24 @@
-// En este video veamos como eliminar elementos del storage...
+// Eliminar y actualizar elementos en localStorage
 
-localStorage.removeItem('nombre');
 
-// En cuanto a toda laf uncionalidad d eun CRUD, nos haria falta un update, no hay como tal un Update... lo que podrías hacer es...
+// Para remover o quitar
+localStorage.removeItem('Nombre');
 
-const mesesArray = JSON.parse(localStorage.getItem('meses'));
-console.log(mesesArray)
-mesesArray.push('nuevo Mes');
-console.log(mesesArray);
-localStorage.setItem('meses', JSON.stringify(mesesArray))
+
+// Actualizar un registro
+
+const mesesArrays = JSON.parse(localStorage.getItem('meses'));
+// console.log(JSON.parse(mesesArrays));
+
+console.log(mesesArrays);
+
+mesesArrays.push('Nuevo Mes');
+
+// rescribir el valor actual
+
+localStorage.setItem('meses', JSON.stringify(mesesArrays));
+
+
+// Y para limpiar
+
+localStorage.clear();
